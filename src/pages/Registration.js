@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Grid,TextField,Button,Collapse,Alert,IconButton, } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
 import { Link,useNavigate  } from 'react-router-dom'
-import { getAuth, createUserWithEmailAndPassword,sendEmailVerification  } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword,sendEmailVerification,updateProfile  } from "firebase/auth";
 
 const Registration = () => {
 
@@ -51,7 +51,13 @@ const Registration = () => {
             createUserWithEmailAndPassword(auth,email,password).then((user)=>{
                 sendEmailVerification(auth.currentUser)
                 .then(() => {
-                    console.log('Email Send')
+                    updateProfile(auth.currentUser, {
+                        displayName: name,
+                      }).then(() => {
+                        console.log("name set")
+                      }).catch((error) => {
+                        console.log(error)
+                      });
                 });
                 navigate('/login')
             }).catch((error)=>{
