@@ -3,6 +3,11 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {Alert,Grid} from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import Leftbar from '../components/Leftbar';
+import Search from '../components/Search';
+import GroupList from '../components/GroupList';
+import FriendRequest from '../components/FriendRequest';
+import Friends from '../components/Friends';
+import UserList from '../components/UserList';
 
 
 const Home = () => {
@@ -30,13 +35,15 @@ const Home = () => {
             <Leftbar active="home"/>
           </Grid>
           <Grid item xs={4}>
-            middle
+            <Search></Search>
+            <GroupList></GroupList>
+            <FriendRequest></FriendRequest>
           </Grid>
           <Grid item xs={3}>
-            middle right
+            <Friends/>
           </Grid>
           <Grid item xs={3}>
-            right
+            <UserList/>
           </Grid>
         </Grid>
         :
